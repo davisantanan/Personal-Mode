@@ -1,16 +1,19 @@
-import { Button, ThemeProvider } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lightTheme } from "./themes/light";
+import { Button } from "@mui/material";
+import { ThemeStore } from "./contexts/themeContext";
+
+
 
 function App() {
+
   return (
-    <ThemeProvider theme={lightTheme}>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Button variant="contained" color="primary">vixe</Button>} />
-      </Routes>
+      <ThemeStore>
+        <Routes>
+          <Route path="/" element={<Button  variant="contained" color="primary">vixe</Button>} />
+        </Routes>
+      </ThemeStore>
     </BrowserRouter>
-    </ThemeProvider>
   );
 }
 
