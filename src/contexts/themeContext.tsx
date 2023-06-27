@@ -18,11 +18,10 @@ export const ThemeContext = createContext({} as typeContextTheme);
 
 export const ThemeStore = ({ children }: propsContextTheme) => {
 
-    const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
+    const [themeName, setThemeName] = useState<'light' | 'dark'>('dark');
 
     const toggleTheme = useCallback(() => {
         setThemeName(themeName => themeName === 'light' ? 'dark' : 'light');
-        console.log('vixe')
     }, [])
 
     const theme = useMemo(() => {
