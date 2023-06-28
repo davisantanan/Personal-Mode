@@ -13,15 +13,15 @@ import {
 import { Home, DirectionsRun } from '@mui/icons-material'
 import { PropsWithChildren, useState, useContext } from "react";
 import { DrawerContext } from "../../contexts/DrawerContext";
-import PersonalAvatar from '../../assets/avatar-1577909_1280.png';
 import { useNavigate } from "react-router-dom";
+import PersonalAvatar from '../../assets/avatar-1577909_1280.png';
 
 
 function AsideMenu({ children }:PropsWithChildren){
     const theme = useTheme();
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(0);
-    const { drawerOpen, toggleDrawerOpen } = useContext(DrawerContext); 
+    const { drawerOpen, toggleDrawerOpen } = useContext(DrawerContext);
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
     const menuItens = [

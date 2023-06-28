@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { DrawerContext } from "../../contexts/DrawerContext";
+import BaseLayout from "../../layouts/baseLayoutPage";
+
 
 function Home(){
 
-  const { toggleDrawerOpen } = useContext(DrawerContext); 
-    
   return(
-      <button onClick={toggleDrawerOpen}>asdasd</button>
-    )
+    <BaseLayout title='Página inicial' toolbar={<>toolbar</>}>
+
+    </BaseLayout>
+  )
 }
 
 export default Home;

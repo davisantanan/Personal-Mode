@@ -6,8 +6,8 @@ function Students(){
   const { toggleDrawerOpen } = useContext(DrawerContext); 
     
   return(
-      <button onClick={toggleDrawerOpen}>asdasd</button>
-    )
+    <button onClick={toggleDrawerOpen}>asdasd</button>
+  )
 }
 
 export default Students;
