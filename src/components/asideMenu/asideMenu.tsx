@@ -10,19 +10,21 @@ import {
     useMediaQuery, 
     useTheme 
 } from "@mui/material";
-import { Home, DirectionsRun } from '@mui/icons-material'
+import { Home, DirectionsRun, DarkMode } from '@mui/icons-material'
 import { PropsWithChildren, useState, useContext } from "react";
 import { DrawerContext } from "../../contexts/DrawerContext";
 import { useNavigate } from "react-router-dom";
 import PersonalAvatar from '../../assets/avatar-1577909_1280.png';
+import { ThemeContext } from "../../contexts/themeContext";
 
 
 function AsideMenu({ children }:PropsWithChildren){
     const theme = useTheme();
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(0);
     const { drawerOpen, toggleDrawerOpen } = useContext(DrawerContext);
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+    const { toggleTheme } = useContext(ThemeContext);
 
     const menuItens = [
         { name: 'Página Inicial', icon: <Home />, path: '/' },
@@ -69,6 +71,14 @@ function AsideMenu({ children }:PropsWithChildren){
                                 </ListItemButton>
                             ))}
                         </List>
+                    </Box>
+                    <Box>
+                        <ListItemButton onClick={toggleTheme}>
+                            <ListItemIcon>
+                                <DarkMode />
+                            </ListItemIcon>
+                            <ListItemText primary='Trocar tema' />
+                        </ListItemButton>
                     </Box>
                 </Box>
             </Drawer>

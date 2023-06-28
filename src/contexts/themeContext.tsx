@@ -11,7 +11,6 @@ interface propsContextTheme {
 interface typeContextTheme {
     themeName: 'light' | 'dark',
     toggleTheme: () => void,
-    setThemeName: (themeName: 'light' | 'dark') => void
 }
 
 export const ThemeContext = createContext({} as typeContextTheme);
@@ -30,7 +29,7 @@ export const ThemeStore = ({ children }: propsContextTheme) => {
     },[themeName])
     
     return(
-        <ThemeContext.Provider value={{ themeName, toggleTheme, setThemeName }}>
+        <ThemeContext.Provider value={{ themeName, toggleTheme }}>
             <ThemeProvider theme={theme}>
                 <Box width='100vw' height='100vh' bgcolor={theme.palette.background.default}>
                     {children}
