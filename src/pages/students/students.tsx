@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DrawerContext } from "../../contexts/DrawerContext";
 
-function Home(){
+function Students(){
 
   const { toggleDrawerOpen } = useContext(DrawerContext); 
     
@@ -10,4 +10,4 @@ function Home(){
     )
 }
 
-export default Home;
+export default Students;

@@ -17,7 +17,7 @@ export const DrawerStore = ({ children }: propsContextDrawer) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     function toggleDrawerOpen(){
-        setDrawerOpen(!drawerOpen)
+        setDrawerOpen(!drawerOpen);
     }
 
     return(
