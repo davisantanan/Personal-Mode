@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { DrawerContext } from "../../contexts/DrawerContext";
+import BaseLayout from "../../layouts/baseLayoutPage";
+import ListingToolsBar from "../../components/listingToolsBar/listingToolsBar";
 
 function Students(){
-
-  const { toggleDrawerOpen } = useContext(DrawerContext); 
-    
+     
   return(
-    <button onClick={toggleDrawerOpen}>asdasd</button>
+    <BaseLayout title='Alunos' toolbar={<ListingToolsBar showSearchInput />}>
+
+    </BaseLayout>
   )
 }
 

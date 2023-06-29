@@ -1,11 +1,11 @@
 import BaseLayout from "../../layouts/baseLayoutPage";
-import ListingToolsBar from "../../components/listingToolsBar/listingToolsBar"
+import DetailsTools from "../../components/detailsTools/detailsTools";
 
 
 function Home(){
 
   return(
-    <BaseLayout title='Página inicial' toolbar={<ListingToolsBar showSearchInput />}>
+    <BaseLayout title='Página inicial' toolbar={<DetailsTools />}>
       
     </BaseLayout>
   )
