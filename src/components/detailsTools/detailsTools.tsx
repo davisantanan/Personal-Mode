@@ -12,7 +12,31 @@ import {
 } from "@mui/icons-material";
 
 
-function DetailsTools(){
+interface detailsToolsProps {
+    showAddButton?: boolean,
+    showSaveButton?: boolean,
+    showDeleteButton?: boolean,
+    showBackButton?: boolean,
+    showSaveAndCloseButton?: boolean,
+    onClickAddButton?: () => void,
+    onClickSaveButton?: () => void,
+    onClickDeleteButton?: () => void,
+    onClickBackButton?: () => void,
+    onClickSaveAndCloseButton?: () => void
+}
+
+function DetailsTools({ 
+    showAddButton= true,
+    showBackButton= true,
+    showDeleteButton= true,
+    showSaveButton= true,
+    showSaveAndCloseButton= false,
+    onClickBackButton,
+    onClickDeleteButton,
+    onClickAddButton,
+    onClickSaveButton,
+    onClickSaveAndCloseButton
+ }:detailsToolsProps){
 
     const theme = useTheme();
 
@@ -26,31 +50,51 @@ function DetailsTools(){
         display='flex'
         alignItems='center'
         >
-            <Button
-            color='primary'
-            variant='outlined'
-            startIcon={<ArrowBack />}
-            >Voltar</Button>
+           {showBackButton &&(
+                <Button
+                color='primary'
+                variant='outlined'
+                startIcon={<ArrowBack />}
+                onClick={onClickBackButton}
+                >Voltar</Button>
+           )}
             <Box
             flex={1}
             display='flex'
             justifyContent='end'
             gap={2}>
-            <Button
-            color='primary'
-            variant='contained'
-            startIcon={<Save />}
-            >Salvar</Button>
-            <Button
-            color='primary'
-            variant='outlined'
-            startIcon={<Add />}
-            >Novo</Button>
-            <Button
-            color='primary'
-            variant='outlined'
-            startIcon={<Delete />}
-            >Apagar</Button>
+                {showSaveButton && (
+                    <Button
+                    color='primary'
+                    variant='contained'
+                    startIcon={<Save />}
+                    onClick={onClickSaveButton}
+                    >Salvar</Button>
+                )}
+                {showSaveAndCloseButton && (
+                    <Button
+                    color='primary'
+                    variant='outlined'
+                    startIcon={<Save />}
+                    onClick={onClickSaveAndCloseButton}
+                    >Salvar e Fechar</Button>
+                )}
+                {showAddButton && (
+                    <Button
+                    color='primary'
+                    variant='outlined'
+                    startIcon={<Add />}
+                    onClick={onClickAddButton}
+                    >Novo</Button>
+                )}
+                {showDeleteButton && (
+                    <Button
+                    color='primary'
+                    variant='outlined'
+                    startIcon={<Delete />}
+                    onClick={onClickDeleteButton}
+                    >Apagar</Button>
+                )}
             </Box>
         </Box>
     )

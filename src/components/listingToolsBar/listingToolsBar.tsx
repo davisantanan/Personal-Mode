@@ -13,18 +13,17 @@ interface listingToolsBar {
     searchText?: string,
     showSearchInput?: boolean,
     changeSearchText?: (newText: string) => void,
-    newButtonText?: string,
-    showNewButton?: boolean,
-    onClickNewButton?: () => void, 
+    addButtonText?: string,
+    showAddButton?: boolean,
+    onClickAddButton?: () => void, 
 }
 
 function ListingToolsBar({ 
     searchText= '', 
     showSearchInput= false, 
     changeSearchText,
-    newButtonText= 'Novo',
-    showNewButton= true,
-    onClickNewButton 
+    showAddButton= true,
+    onClickAddButton 
 }:listingToolsBar){
 
     const theme = useTheme();
@@ -55,14 +54,14 @@ function ListingToolsBar({
                 }}
                 />
             )}
-            {showNewButton && (
+            {showAddButton && (
                 <Box flex={1} display='flex' justifyContent='end'>
-                <Button
-                color='primary'
-                variant='contained'
-                endIcon={<Add />}
-                onClick={onClickNewButton}
-                >{newButtonText}</Button>
+                    <Button
+                    color='primary'
+                    variant='contained'
+                    endIcon={<Add />}
+                    onClick={onClickAddButton}
+                    >Novo</Button>
             </Box>
             )}
         </Box>   
