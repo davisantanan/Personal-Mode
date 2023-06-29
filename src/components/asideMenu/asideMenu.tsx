@@ -19,6 +19,7 @@ import { ThemeContext } from "../../contexts/themeContext";
 
 
 function AsideMenu({ children }:PropsWithChildren){
+    
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
     const navigate = useNavigate();
