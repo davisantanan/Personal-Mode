@@ -3,6 +3,7 @@ import {
     Button,
     Paper, 
     Skeleton, 
+    useMediaQuery, 
     useTheme 
 } from "@mui/material"
 import { 
@@ -44,12 +45,14 @@ function DetailsTools({
     onClickSaveAndCloseButton,
     loadingShowAddButton= false,
     loadingShowSaveButton= false,
-    loadingShowBackButton= false,
     loadingShowDeleteButton= false,
     loadingShowSaveAndCloseButton= false
  }:detailsToolsProps){
 
     const theme = useTheme();
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 
     return(
         <Box 
@@ -61,26 +64,31 @@ function DetailsTools({
         display='flex'
         alignItems='center'
         >
-           {showBackButton &&(
+           {showBackButton && (
                 <Button
+                component={Box}
                 color='primary'
-                variant='outlined'
-                startIcon={<ArrowBack />}
+                variant={xsDown ? 'text' : 'outlined'}
+                startIcon={mdDown ? '' : <ArrowBack />}
                 onClick={onClickBackButton}
-                >Voltar</Button>
+                >
+                    {mdDown ? <ArrowBack /> : 'Voltar'}
+                </Button>
            )}
             <Box
             flex={1}
             display='flex'
             justifyContent='end'
-            gap={2}>
+            gap={xsDown ? 0 : smDown ? 1 : 2}>
                 {showSaveButton && !loadingShowSaveButton && (
                     <Button
                     color='primary'
-                    variant='contained'
-                    startIcon={<Save />}
+                    variant={xsDown ? 'text' : 'contained'}
+                    startIcon={mdDown ? '' : <Save />}
                     onClick={onClickSaveButton}
-                    >Salvar</Button>
+                    >
+                        {mdDown ? <Save /> : 'Salvar'}
+                    </Button>
                 )}
                 {loadingShowSaveButton && (
                     <Skeleton width={110} height={60} />
@@ -88,10 +96,12 @@ function DetailsTools({
                 {showSaveAndCloseButton && (
                     <Button
                     color='primary'
-                    variant='outlined'
-                    startIcon={<Save />}
+                    variant={xsDown ? 'text' : 'outlined'}
+                    startIcon={mdDown ? '' : <Save />}
                     onClick={onClickSaveAndCloseButton}
-                    >Salvar e Fechar</Button>
+                    >
+                        {mdDown ? <Save /> : 'Salvar e Fechar'}
+                    </Button>
                 )}
                 {(loadingShowSaveAndCloseButton) && (
                     <Skeleton width={110} height={60} />
@@ -99,10 +109,12 @@ function DetailsTools({
                 {showAddButton && !loadingShowAddButton && (
                     <Button
                     color='primary'
-                    variant='outlined'
-                    startIcon={<Add />}
+                    variant={xsDown ? 'text' : 'outlined'}
+                    startIcon={mdDown ? '' : <Add />}
                     onClick={onClickAddButton}
-                    >Novo</Button>
+                    >
+                        {mdDown ? <Add /> : 'Novo'}
+                    </Button>
                 )}
                 {loadingShowAddButton  && (
                     <Skeleton width={110} height={60} />
@@ -110,10 +122,12 @@ function DetailsTools({
                 {showDeleteButton && !loadingShowDeleteButton && (
                     <Button
                     color='primary'
-                    variant='outlined'
-                    startIcon={<Delete />}
+                    variant={xsDown ? 'text' : 'outlined'}
+                    startIcon={mdDown ? '' : <Delete />}
                     onClick={onClickDeleteButton}
-                    >Apagar</Button>
+                    >
+                        {mdDown ? <Delete /> : 'Apagar'}
+                    </Button>
                 )}
                 {loadingShowDeleteButton && (
                     <Skeleton width={110} height={60} />

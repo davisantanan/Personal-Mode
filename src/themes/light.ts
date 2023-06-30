@@ -19,5 +19,14 @@ export const lightTheme = createTheme({
             default: '#f7f6f3',
             paper: '#fff'
         }
+    },
+    breakpoints: {
+        values: {
+            xs: 350,
+            sm: 600,
+            md: 900,
+            lg: 1200,
+            xl: 1536
+        }
     }
 });
