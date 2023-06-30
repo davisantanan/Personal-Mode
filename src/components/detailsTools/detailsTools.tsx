@@ -2,6 +2,7 @@ import {
     Box, 
     Button,
     Paper, 
+    Skeleton, 
     useTheme 
 } from "@mui/material"
 import { 
@@ -22,7 +23,12 @@ interface detailsToolsProps {
     onClickSaveButton?: () => void,
     onClickDeleteButton?: () => void,
     onClickBackButton?: () => void,
-    onClickSaveAndCloseButton?: () => void
+    onClickSaveAndCloseButton?: () => void,
+    loadingShowAddButton?: boolean,
+    loadingShowSaveButton?: boolean,
+    loadingShowDeleteButton?: boolean,
+    loadingShowBackButton?: boolean,
+    loadingShowSaveAndCloseButton?: boolean,
 }
 
 function DetailsTools({ 
@@ -35,7 +41,12 @@ function DetailsTools({
     onClickDeleteButton,
     onClickAddButton,
     onClickSaveButton,
-    onClickSaveAndCloseButton
+    onClickSaveAndCloseButton,
+    loadingShowAddButton= false,
+    loadingShowSaveButton= false,
+    loadingShowBackButton= false,
+    loadingShowDeleteButton= false,
+    loadingShowSaveAndCloseButton= false
  }:detailsToolsProps){
 
     const theme = useTheme();
@@ -63,13 +74,16 @@ function DetailsTools({
             display='flex'
             justifyContent='end'
             gap={2}>
-                {showSaveButton && (
+                {showSaveButton && !loadingShowSaveButton && (
                     <Button
                     color='primary'
                     variant='contained'
                     startIcon={<Save />}
                     onClick={onClickSaveButton}
                     >Salvar</Button>
+                )}
+                {loadingShowSaveButton && (
+                    <Skeleton width={110} height={60} />
                 )}
                 {showSaveAndCloseButton && (
                     <Button
@@ -79,7 +93,10 @@ function DetailsTools({
                     onClick={onClickSaveAndCloseButton}
                     >Salvar e Fechar</Button>
                 )}
-                {showAddButton && (
+                {(loadingShowSaveAndCloseButton) && (
+                    <Skeleton width={110} height={60} />
+                )}
+                {showAddButton && !loadingShowAddButton && (
                     <Button
                     color='primary'
                     variant='outlined'
@@ -87,13 +104,19 @@ function DetailsTools({
                     onClick={onClickAddButton}
                     >Novo</Button>
                 )}
-                {showDeleteButton && (
+                {loadingShowAddButton  && (
+                    <Skeleton width={110} height={60} />
+                )}
+                {showDeleteButton && !loadingShowDeleteButton && (
                     <Button
                     color='primary'
                     variant='outlined'
                     startIcon={<Delete />}
                     onClick={onClickDeleteButton}
                     >Apagar</Button>
+                )}
+                {loadingShowDeleteButton && (
+                    <Skeleton width={110} height={60} />
                 )}
             </Box>
         </Box>
