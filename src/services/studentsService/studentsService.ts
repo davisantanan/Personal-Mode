@@ -26,7 +26,7 @@ const getAll = async (page = 1, filter= '') => {
     }
 };
 
-const getById =async (id:number) => {
+const getById = async (id:number) => {
     try {
         const { data } = await api.get(`/alunos/${id}`);
         if(data) {

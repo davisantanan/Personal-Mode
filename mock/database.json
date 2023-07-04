@@ -1,3 +1,11 @@
 {
-    "alunos": []
+    "alunos": [
+        {
+            "id": 1,
+            "name": "Davi",
+            "age": 21,
+            "telNumber": 987554179,
+            "dayOfTheWeek": "Segunda-Feira"
+        }
+    ]
 }

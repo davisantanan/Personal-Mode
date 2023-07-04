@@ -7,6 +7,7 @@ import {
     useTheme 
 } from "@mui/material";
 import { Add, Search } from "@mui/icons-material";
+import { useState } from 'react';
 
 
 interface listingToolsBar {
@@ -19,13 +20,12 @@ interface listingToolsBar {
 }
 
 function ListingToolsBar({ 
-    searchText= '', 
-    showSearchInput= false, 
-    changeSearchText,
-    showAddButton= true,
-    onClickAddButton 
+    showSearchInput = false, 
+    showAddButton = true,
+    onClickAddButton
 }:listingToolsBar){
 
+    const [inputSearch, setInputSearch] = useState('');
     const theme = useTheme();
     
     return(
@@ -43,8 +43,8 @@ function ListingToolsBar({
                 <TextField
                 size='small'
                 placeholder='Pesquisar'
-                value={searchText}
-                onChange={(e) => changeSearchText?.(e.target.value)}
+                value={inputSearch}
+                onChange={(e) => setInputSearch(e.target.value)}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="start">
