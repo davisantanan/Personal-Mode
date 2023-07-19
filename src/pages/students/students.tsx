@@ -1,15 +1,25 @@
-import BaseLayout from "../../layouts/baseLayoutPage";
-import ListingToolsBar from "../../components/listingToolsBar/listingToolsBar";
+import { 
+  LinearProgress, 
+  Paper, 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableFooter, 
+  TableHead, 
+  TableRow 
+} from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import { studentsDetails, studentsService } from "../../services/studentsService/studentsService";
 import { useSearchParams } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import BaseLayout from "../../layouts/baseLayoutPage";
+import ListingToolsBar from "../../components/listingToolsBar/listingToolsBar";
 
 function Students(){
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const { debounce } = useDebounce(300);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [rows, setRows] = useState<studentsDetails[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [isloading, setIsLoading] = useState(true);
@@ -69,6 +79,22 @@ function Students(){
               </TableRow>
             ))}
           </TableBody>
+
+          {totalCount === 0 && !isloading && (
+            <caption>Nenhum registro encontrado</caption>
+          )}
+          
+          <TableFooter>
+            {isloading ?
+            <TableRow>
+              <TableCell colSpan={4}>
+                <LinearProgress variant="indeterminate" /> 
+              </TableCell>
+            </TableRow>
+            :
+            <div></div>
+            }
+          </TableFooter>
         </Table>
       </TableContainer>
 
