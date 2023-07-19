@@ -6,6 +6,41 @@
             "age": 21,
             "telNumber": 987554179,
             "dayOfTheWeek": "Segunda-Feira"
+        },
+        {
+            "id": 2,
+            "name": "Pamela",
+            "age": 25,
+            "telNumber": 987543245,
+            "dayOfTheWeek": "Quarta-Feira"
+        },
+        {
+            "id": 3,
+            "name": "João",
+            "age": 40,
+            "telNumber": 982351212,
+            "dayOfTheWeek": "Sábado"
+        },
+        {
+            "id": 4,
+            "name": "Virginia",
+            "age": 18,
+            "telNumber": 985421325,
+            "dayOfTheWeek": "Sexta-Feira"
+        },
+        {
+            "id": 5,
+            "name": "Geruza",
+            "age": 60,
+            "telNumber": 988456234,
+            "dayOfTheWeek": "Terça-Feira"
+        },
+        {
+            "id": 6,
+            "name": "Amadeu",
+            "age": 20,
+            "telNumber": 987624782,
+            "dayOfTheWeek": "Quinta-Feira"
         }
     ]
 }

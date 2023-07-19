@@ -1,13 +1,13 @@
 import api from "../api/api";
 
 
-interface studentsDetails {
+export interface studentsDetails {
     name: string,
     age: number,
     id: number,
     telNumber: number,
     dayOfTheWeek: string
-}
+};
 
 const getAll = async (page = 1, filter= '') => {
     try {
@@ -77,4 +77,4 @@ export const studentsService = {
     create,
     updateById,
     deleteById
-}
+};
