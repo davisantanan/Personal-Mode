@@ -1,5 +1,6 @@
 import { 
   LinearProgress, 
+  Pagination, 
   Paper, 
   Table, 
   TableBody, 
@@ -27,11 +28,15 @@ function Students(){
   const search = useMemo(() => {
     return searchParams.get('search') || '';
   },[searchParams]);
+
+  const page = useMemo(() => {
+    return Number(searchParams.get('page') || '1');
+  },[searchParams]);
      
   useEffect(() => {
     setIsLoading(true)
     debounce(() => {
-      studentsService.getAll(1, search).then((result) => {
+      studentsService.getAll(page, search).then((result) => {
         setIsLoading(false);
         if(result instanceof Error){
           alert(result.message);
@@ -43,7 +48,7 @@ function Students(){
       })
     });
     // eslint-disable-next-line
-  }, [search]);
+  }, [search, page]);
 
   return(
     <BaseLayout 
@@ -52,7 +57,7 @@ function Students(){
       <ListingToolsBar 
       showSearchInput 
       searchText={search}
-      changeSearchText={text => setSearchParams({ search: text }, { replace: true })}
+      changeSearchText={text => setSearchParams({ search: text, page: '1' }, { replace: true })}
       />}>
 
       <TableContainer 
@@ -85,15 +90,25 @@ function Students(){
           )}
           
           <TableFooter>
-            {isloading ?
-            <TableRow>
-              <TableCell colSpan={4}>
-                <LinearProgress variant="indeterminate" /> 
-              </TableCell>
-            </TableRow>
-            :
-            <div></div>
-            }
+            {isloading && (
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <LinearProgress variant="indeterminate" /> 
+                </TableCell>
+              </TableRow>
+            )}
+            {totalCount > 0 && totalCount > 8 &&(
+              <TableRow >
+                <TableCell colSpan={4}>
+                  <Pagination 
+                  page={page}
+                  count={Math.ceil(totalCount / 8)} 
+                  onChange={(e, newPage) => setSearchParams({ search, page: newPage.toString()}, { replace: true })}
+                  /> 
+                </TableCell>
+              </TableRow>
+            )}
+
           </TableFooter>
         </Table>
       </TableContainer>

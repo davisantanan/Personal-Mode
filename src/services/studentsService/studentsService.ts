@@ -11,7 +11,7 @@ export interface studentsDetails {
 
 const getAll = async (page = 1, filter= '') => {
     try {
-        const { data, headers } = await api.get(`/alunos?_page=${page}&_limit=10&name_like=${filter}`);
+        const { data, headers } = await api.get(`/alunos?_page=${page}&_limit=8&name_like=${filter}`);
         if(data) {
             return {
                 data,
