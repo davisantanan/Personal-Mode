@@ -1,4 +1,5 @@
 import { 
+  IconButton,
   LinearProgress, 
   Pagination, 
   Paper, 
@@ -10,6 +11,7 @@ import {
   TableHead, 
   TableRow 
 } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
 import { useEffect, useMemo, useState } from "react";
 import { studentsDetails, studentsService } from "../../services/studentsService/studentsService";
 import { useSearchParams } from "react-router-dom";
@@ -41,7 +43,6 @@ function Students(){
         if(result instanceof Error){
           alert(result.message);
         } else {
-          console.log(result);
           setRows(result.data);
           setTotalCount(result.totalCount);
         } 
@@ -49,6 +50,20 @@ function Students(){
     });
     // eslint-disable-next-line
   }, [search, page]);
+
+  const handleDelete = (id:number) => {
+      if(window.confirm('Realmente deseja apagar esse registro?')){
+        studentsService.deleteById(id).then((result) => {
+          if(result instanceof Error){
+            alert(result.message); 
+          } else {
+            setRows(oldRows => [
+              ...oldRows.filter(oldRow => oldRow.id !== id)
+            ])
+          }
+        })
+    }
+  }
 
   return(
     <BaseLayout 
@@ -67,20 +82,27 @@ function Students(){
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '16px' }}>Nome do Aluno</TableCell>
+              <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '16px' }}>Dia da semana</TableCell>
+              <TableCell align="center" sx={{ fontWeight: 'bold', fontSize: '16px' }}>Telefone</TableCell>
               <TableCell></TableCell>
-              <TableCell sx={{ fontWeight: 'bold', fontSize: '16px' }}>Nome do Aluno</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', fontSize: '16px' }}>Dia da semana</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', fontSize: '16px' }}>Telefone</TableCell>
             </TableRow>
           </TableHead>
           
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.dayOfTheWeek}</TableCell>
-                <TableCell>{row.telNumber}</TableCell>
+              <TableRow key={row.id}> 
+                <TableCell align="center">{row.name}</TableCell>
+                <TableCell align="center">{row.dayOfTheWeek}</TableCell>
+                <TableCell align="center">{row.telNumber}</TableCell>
+                <TableCell align="right">
+                  <IconButton size="small">
+                    <Edit />
+                  </IconButton>
+                  <IconButton size="small" onClick={() => handleDelete(row.id)}>
+                    <Delete />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -92,18 +114,18 @@ function Students(){
           <TableFooter>
             {isloading && (
               <TableRow>
-                <TableCell colSpan={4}>
+                <TableCell colSpan={5}>
                   <LinearProgress variant="indeterminate" /> 
                 </TableCell>
               </TableRow>
             )}
-            {totalCount > 0 && totalCount > 8 &&(
+            {totalCount > 8 &&(
               <TableRow >
-                <TableCell colSpan={4}>
+                <TableCell colSpan={5}>
                   <Pagination 
                   page={page}
                   count={Math.ceil(totalCount / 8)} 
-                  onChange={(e, newPage) => setSearchParams({ search, page: newPage.toString()}, { replace: true })}
+                  onChange={(e, newPage) => setSearchParams({ search, page: newPage.toString()})}
                   /> 
                 </TableCell>
               </TableRow>

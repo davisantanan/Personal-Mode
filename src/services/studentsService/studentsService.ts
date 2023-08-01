@@ -64,7 +64,7 @@ const updateById = async (id:number, dataStudents:studentsDetails) => {
 const deleteById = async (id:number) => {
     try {
         await api.delete(`/alunos/${id}`);
-        alert('Aluno deletado com sucesso');
+        alert('Registro apagado com sucesso');
     } catch (error) {
         console.log(error);
         return new Error((error as {message: string}).message || 'Erro ao apagar registro');
