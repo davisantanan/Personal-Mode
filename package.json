@@ -31,12 +31,6 @@
     "mock": "json-server -w -p 3333 ./mock/database.json",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

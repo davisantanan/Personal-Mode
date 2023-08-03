@@ -14,7 +14,7 @@ import {
 import { Delete, Edit } from "@mui/icons-material";
 import { useEffect, useMemo, useState } from "react";
 import { studentsDetails, studentsService } from "../../services/studentsService/studentsService";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
 import BaseLayout from "../../layouts/baseLayoutPage";
 import ListingToolsBar from "../../components/listingToolsBar/listingToolsBar";
@@ -26,6 +26,7 @@ function Students(){
   const [rows, setRows] = useState<studentsDetails[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [isloading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const search = useMemo(() => {
     return searchParams.get('search') || '';
@@ -73,6 +74,7 @@ function Students(){
       showSearchInput 
       searchText={search}
       changeSearchText={text => setSearchParams({ search: text, page: '1' }, { replace: true })}
+      onClickAddButton={() => navigate('/students/details/new')}
       />}>
 
       <TableContainer 
@@ -96,7 +98,7 @@ function Students(){
                 <TableCell align="center">{row.dayOfTheWeek}</TableCell>
                 <TableCell align="center">{row.telNumber}</TableCell>
                 <TableCell align="right">
-                  <IconButton size="small">
+                  <IconButton size="small" onClick={() => navigate(`details/${row.id}`)}>
                     <Edit />
                   </IconButton>
                   <IconButton size="small" onClick={() => handleDelete(row.id)}>
