@@ -43,13 +43,6 @@
       "dayOfTheWeek": "Segunda-Feira"
     },
     {
-      "id": 9,
-      "name": "Paulo",
-      "age": 40,
-      "telNumber": 982351212,
-      "dayOfTheWeek": "Sábado"
-    },
-    {
       "id": 10,
       "name": "Rafael",
       "age": 18,
@@ -57,15 +50,22 @@
       "dayOfTheWeek": "Sexta-Feira"
     },
     {
-      "id": 11,
-      "name": "Antônio",
-      "age": 60,
-      "telNumber": 988456234,
-      "dayOfTheWeek": "Terça-Feira"
+      "id": 12,
+      "name": "Priscila",
+      "age": 20,
+      "telNumber": 987624782,
+      "dayOfTheWeek": "Quinta-Feira"
     },
     {
       "id": 12,
-      "name": "Priscila",
+      "name": "Jordan",
+      "age": 20,
+      "telNumber": 987624782,
+      "dayOfTheWeek": "Quinta-Feira"
+    },
+    {
+      "id": 12,
+      "name": "Michael",
       "age": 20,
       "telNumber": 987624782,
       "dayOfTheWeek": "Quinta-Feira"
